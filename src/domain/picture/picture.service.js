@@ -56,6 +56,7 @@ export function saveImage(pictureID) {
         headers: {
             'Content-Type': 'application/json',
         },
+        // WIP Function to add image to the collection
         body: JSON.stringify({pictures_collection : [{ picsum_id: pictureID, tags : [String] }] , token : String })
     })
         .then(async res => {
