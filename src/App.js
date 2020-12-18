@@ -7,6 +7,7 @@ import { ApplicationContext, ApplicationProvider } from './domain/application.st
 import { authGetMe } from './domain/authentication/authentication.actions';
 
 import './App.css';
+import Collection from "./pages/Collection";
 
 const Wrapper = ({ component: Component, ...props }) => {
   const { dispatch } = useContext(ApplicationContext);
@@ -42,6 +43,7 @@ function App() {
         <Switch>
           <Route path='/login' component={Auth} />
           <ProtectedRoute exact path='/' component={Home} />
+          <ProtectedRoute exact path='/profile' component={Collection} />
           <Redirect to="/" />
         </Switch>
         <Menu />
