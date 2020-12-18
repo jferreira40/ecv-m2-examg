@@ -49,3 +49,22 @@ export function unlikePicture(pictureID) {
         })
         .then(res => res.json())
 }
+
+export function saveImage(pictureID) {
+    return fetch(`/api/collection/${pictureID}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({pictures_collection : [{ picsum_id: pictureID, tags : [String] }] , token : String })
+    })
+        .then(async res => {
+            if (res.status !== 200 && res.status !== 201) {
+                const { message } = await res.json()
+                throw new Error(message)
+            }
+            return res
+        })
+        .then(res => res.json());
+
+}

@@ -16,7 +16,8 @@ export default function reducer(state, action) {
             }
         case types.PICTURE_LIKED:
             const idx = pictures.findIndex(picture => picture._id === action.payload._id);
-            pictures[idx] = { ...pictures[idx], likedBy: [...pictures[idx].likedBy, state.user._id] };
+            pictures[idx] = {...pictures[idx], ...action.payload};
+            //pictures[idx] = { ...pictures[idx], likedBy: [...pictures[idx].likedBy, state.user._id] };
             return {
                 ...state,
                 pending: false,
@@ -25,7 +26,8 @@ export default function reducer(state, action) {
         case types.PICTURE_UNLIKED:
             const idxUnlike = pictures.findIndex(picture => picture._id === action.payload._id);
             const likedBy = pictures[idxUnlike].likedBy.filter(userId => userId !== state.user._id)
-            pictures[idxUnlike] = { ...pictures[idxUnlike], likedBy: likedBy };
+            //pictures[idxUnlike] = { ...pictures[idxUnlike], likedBy: likedBy };
+            pictures[idxUnlike] = {...pictures[idxUnlike], ...action.payload};
             return {
                 ...state,
                 pending: false,
