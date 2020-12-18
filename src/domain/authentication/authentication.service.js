@@ -39,7 +39,7 @@ export function login(data) {
 }
 
 export function logout() {
-    // TODO   
+    localStorage.removeItem('AUTH');
 }
 
 export function getMe() {
